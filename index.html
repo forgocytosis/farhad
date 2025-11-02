@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Farhad</title>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"/>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet"/>
+
+     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+     <script src="https://kit.fontawesome.com/b92e9fd8b5.js" crossorigin="anonymous"></script>
+
+  <style>
+    html {
+  scroll-padding-top: 100px; 
+  scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #1b073a;
+      color: white;
+      font-family: "Nunito", sans-serif;
+    }
+
+    .navbar {
+      background-color: #1b073a !important;
+    }
+
+    .navbar .nav-link,
+    .navbar .navbar-brand {
+      color: rgb(205, 207, 235) !important;
+    }
+
+    .navbar .nav-link:hover {
+      color: #d1b3ff !important;
+    }
+
+    /* Hide left navbar (brand + links) on smaller screens */
+    @media (max-width: 660px) {
+      .left-nav {
+        display: none !important;
+      }
+
+      /* Center right icons on small screens */
+      .right-nav {
+        justify-content: center !important;
+        width: 100%;
+      }
+    }
+
+  .hero {
+      height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* Typing text animation */
+    .typing {
+      color: #ffffff;
+      font-weight: 700;
+      border-right: 4px solid #ca7df7;
+      padding-left: 4px;
+      animation: blink 1s steps(1) infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes blink {
+      50% {
+        
+        border-color: transparent;
+      }
+    }
+
+    /* --- Carousel appearance --- */
+.custom-carousel {
+  max-width: 1000px; /* controls width */
+  margin: 0 auto;
+}
+
+.custom-carousel .carousel-inner img {
+  height: 450px; /* controls height */
+  object-fit: cover; /* makes image fit nicely */
+  border-radius: 20px; /* rounded corners */
+   opacity: 0.6; /* 0 = invisible, 1 = full opacity */
+  transition: opacity 0.5s ease;
+}
+
+.carousel-caption {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+}
+
+.custom-arrow i {
+  color: white;
+  font-size: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.carousel-control-prev:hover i,
+.carousel-control-next:hover i {
+  transform: scale(1.2);
+}
+
+
+ .list-group-item {
+    position: relative;
+    background: none !important;
+    border: none !important;
+    color: #aaa;
+    font-weight: 500;
+    padding: 0.4rem 0;
+  }
+
+  /* Active item text + right line */
+  .list-group-item.active {
+    color: #d1b3ff;
+    font-weight: 600;
+  }
+
+  .list-group-item.active::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -10px; /* adjust spacing if needed */
+    width: 3px;
+    height: 100%;
+    background-color: #d1b3ff;
+  }
+
+  /* Remove Bootstrap focus ring */
+  .list-group-item:focus {
+    box-shadow: none !important;
+  }
+
+
+  section {
+
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+
+.hover-move {
+      width: 200px;
+      height: auto;
+      border-radius: 15px;
+      transition: transform 0.3s ease; /* smooth animation */
+    }
+
+    .hover-move:hover {
+      transform: translateY(-5px); /* move image up slightly */
+    }
+    
+
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-light sticky-top">
+    <div class="container d-flex justify-content-between align-items-center" style="max-width: 1140px; height: 40px;">
+      
+      <!-- LEFT SIDE (Brand + Links) -->
+      <div class="d-flex align-items-center left-nav">
+        <a class="navbar-brand fw-bold text-white me-4" href="#">Farhad</a>
+        <ul class="navbar-nav d-flex flex-row mb-0">
+          <li class="nav-item mx-2 fw-bold">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-item mx-2 fw-bold">
+            <a class="nav-link" href="#experience">Experience</a>
+          </li>
+          <li class="nav-item mx-2 fw-bold">
+            <a class="nav-link" href="#projects">Projects</a>
+          </li>
+          <li class="nav-item mx-2 fw-bold">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- RIGHT SIDE (Icons) -->
+      <ul class="navbar-nav d-flex flex-row mb-0 right-nav">
+        <li class="nav-item mx-2">
+          <a class="nav-link" href="#"><i class="bi bi-instagram"></i></a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link" href="#"><i class="bi bi-github"></i></a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link" href="#"><i class="bi bi-linkedin"></i></a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link" href="#"><i class="bi bi-envelope-at-fill"></i></a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link" href="#"><i class="bi bi-journal-text"></i></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  
+<!-- HERO SECTION -->
+  <section class="hero">
+    <h1 class="display-3 mb-3" style="color: rgba(231, 231, 252, 0.938);">
+  
+      <span id="typing" class="typing"></span>
+      </h1>
+
+       <h5 class="text-center mx-auto" style="line-height: 1.8; text-align: justify; max-width: 600px; color: #aaa;">
+        I'm a Computer Science Student majoring in Cyber Security. 
+        I like to explore and gain experience in myriad fields. So feel free to reach out to me. </h5>
+       </div>
+  </section>
+
+  <!-- About -->
+<section id="about" class="mt-5">
+  <div class="container" style="max-width: 1100px;" >
+    <div class="row align-items-center ms-3 me-3">
+      
+      <div class="col-md-7">
+    
+        <div class="display-6 mb-5 fw-bold" style="color: rgba(219, 219, 245, 0.938)">> about me</div>
+        <br>
+        <!-- Paragraph -->
+        <p class="text-light" style="color: rgba(193, 193, 212, 0.938) ; line-height: 1.8; text-align: justify;">
+          Profound enthusiasm for writing content and web development. 
+          Currently pursuing a degree in Computer Science with a major in 
+          <span class="fw-bold">Cyber Security</span> at 
+          <span class="text-warning fw-bold">Asia Pacific University of Technology & Innovation (APU)</span>, 
+          I aim to combine technical expertise with a flair for storytelling. 
+
+          <br>
+          Apart from my studies and work, I like to explore music, films and arts. Also play copius amounts video games. 
+        </p>
+      </div>
+
+      <!-- RIGHT COLUMN (Image) -->
+      <div class="col-md-5 text-center">
+        <img 
+          class="img-fluid hover-move" src="pfp.jpg" alt="pfp" style="width: 350px; height: auto; opacity: 0.95; object-fit: cover;" >
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+   <!-- experience -->
+<section id="experience" class="mt-5 py-5">
+  <div class="container"  style="max-width: 1100px;">
+     <div class="display-6 mb-5 ms-3 fw-bold" style="color: rgb(219, 219, 245)">> experience</div>
+
+<div class="row" style="color: rgb(206, 208, 230); margin-left: 80px;">
+  <div class="col-4">
+    <div class="list-group border-0" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active" 
+         id="list-home-list" data-bs-toggle="list" href="#list-home" 
+         role="tab" aria-controls="list-home">Mentoring</a>
+
+      <a class="list-group-item list-group-item-action" 
+         id="list-profile-list" data-bs-toggle="list" href="#list-profile" 
+         role="tab" aria-controls="list-profile">Community Service</a>
+    </div>
+  </div>
+
+  <div class="col-8" style="color: rgb(206, 208, 230)">
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="list-home" 
+           role="tabpanel" aria-labelledby="list-home-list">
+        Mentored O Level and A Level students back in Bangladesh.
+      </div>
+      <div class="tab-pane fade" id="list-profile" 
+           role="tabpanel" aria-labelledby="list-profile-list">
+        Collaborated with students and local organizations to promote social responsibility and civic engagement.
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+</section>
+
+ <!-- Projects -->
+
+<section id="projects" class="mt-5 py-5">
+  <div class="container" style="max-width: 1100px; ">
+     <div class="display-6 mb-5 ms-3 fw-bold" style="color: rgb(219, 219, 245)">> projects</div>
+     
+<div class="container my-5">
+  <div id="carouselExampleCaptions" class="carousel slide custom-carousel" data-bs-ride="carousel">
+    
+    <!-- indicators -->
+
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></button>
+      
+    </div>
+
+    <!-- slides -->
+
+    <div class="carousel-inner rounded-4 shadow-lg">
+      <div class="carousel-item active">
+        <img src="Project1.png" class="d-block w-100" alt="...">
+        <div class="carousel-caption">
+          <h3 class="fw-bold">the sisyphus</h3>
+          <p>A journaling site where I share my corny writing and sometimes moral relativism</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="Project2.png" class="d-block w-100" alt="...">
+        <div class="carousel-caption">
+          <h3 class="fw-bold">gym xtreme</h3>
+          <p>A website for a gym. Something i built for my local gym but later they didn't purchase my website</p>
+        </div>
+      </div>
+    </div>
+
+     <!-- buttons -->
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+  <span class="custom-arrow"><i class="fa-solid fa-square-caret-left fa-xl"></i></span>
+  <span class="visually-hidden">Previous</span>
+</button>
+
+<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+  <span class="custom-arrow"><i class="fa-solid fa-square-caret-right fa-xl"></i></span>
+  <span class="visually-hidden">Next</span>
+</button>
+
+  </div>
+</div>
+  </div>
+</section>
+
+
+
+   <!-- Contact -->
+<section id="contact" class="mt-5 py-5">
+  <div class="container"  style="max-width: 1100px;">
+     <div class="display-6 mb-5 ms-3 fw-bold" style="color: rgba(219, 219, 245, 0.938)">> contact</div>
+
+<div class="row" style="color: rgba(219, 219, 245, 0.938); margin-left: 80px;">
+  <div class="col-4">
+    <div class="list-group border-0" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active" 
+         id="list-email-list" data-bs-toggle="list" href="#list-email" 
+         role="tab" aria-controls="list-email">Email</a>
+
+      <a class="list-group-item list-group-item-action" 
+         id="list-phone-list" data-bs-toggle="list" href="#list-phone" 
+         role="tab" aria-controls="list-phone">Phone</a>
+    </div>
+  </div>
+
+
+
+  <div class="col-8">
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="list-email" 
+           role="tabpanel" aria-labelledby="list-email-list">
+        sami.rahman3147@gmail.com
+      </div>
+      <div class="tab-pane fade" id="list-phone" 
+           role="tabpanel" aria-labelledby="list-phone-list">
+        BD - +88 01339491174
+        <br>
+        MY - +60 175416086
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+
+<br>
+<br>
+
+  
+    <h6 class="text-center mt-5" style="font-size:small; color: #aaa; line-height: 1.8;" >
+      <span> Built by Farhad Rahman Sami <br>
+        All Rights Reserved. ©</span>
+    </h6>
+
+</section>
+
+
+
+  <!-- Bootstrap JS -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous">
+  </script>
+
+  <script src="script.js">
+  </script>
+
+</body>
+</html>
