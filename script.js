@@ -1,7 +1,7 @@
 (function () {
   const el = document.getElementById("typing");
   const text = [
-    "</span> <span style='color:#d1b3ff; font-weight:700;'>FARHAD</span> <span style='color: rgba(219, 219, 245, 0.938); font-weight:700;'> here. </span>"
+    "<span style='color:#d1b3ff; font-weight:700;'>FARHAD</span> <span style='color: rgba(219, 219, 245, 0.938); font-weight:700;'> here. </span>"
   ];
   const speed = 90; // typing speed
   let i = 0;
@@ -37,4 +37,5 @@
     type();
   }
 })();
+
 
